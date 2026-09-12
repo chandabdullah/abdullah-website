@@ -40,7 +40,7 @@ export default function Explorer({ items, kicker }: ExplorerProps) {
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
                 onClick={() => setActive(i)}
-                className="grid w-full grid-cols-[44px_1fr_auto] items-center gap-4 py-5 text-left"
+                className="grid w-full grid-cols-[44px_auto_1fr_auto] items-center gap-4 py-5 text-left"
               >
                 <span
                   className={`text-[13px] font-bold tracking-[0.1em] transition-colors ${
@@ -49,6 +49,15 @@ export default function Explorer({ items, kicker }: ExplorerProps) {
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
+                {item.icon && (
+                  <AreaIcon
+                    name={item.icon}
+                    size={26}
+                    className={`transition-colors duration-300 ${
+                      on ? "text-accent" : "text-muted"
+                    }`}
+                  />
+                )}
                 <span
                   className={`text-[17px] font-bold tracking-[0.04em] transition-[color,transform] duration-300 ${
                     on ? "translate-x-1 text-accent" : "translate-x-0"

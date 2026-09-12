@@ -1,5 +1,6 @@
 import Logo from "@/components/logo";
-import { profile, socials } from "@/lib/content";
+import SocialLinks from "@/components/social-links";
+import { profile } from "@/lib/content";
 
 export default function Footer() {
   return (
@@ -8,18 +9,8 @@ export default function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           <Logo size={44} className="self-start" />
 
-          <nav aria-label="Social" className="flex flex-wrap gap-x-6 gap-y-2">
-            {socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ul-link text-[13px] font-medium transition-colors hover:text-accent"
-              >
-                {social.label}
-              </a>
-            ))}
+          <nav aria-label="Social" className="flex items-start">
+            <SocialLinks showLabels size={18} className="gap-x-6" />
           </nav>
 
           <div className="flex flex-col gap-1 text-[13px]">

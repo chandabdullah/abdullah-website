@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Reveal from "@/components/reveal";
 import InsightsList from "@/components/insights-list";
 import NodeField from "@/components/node-field";
+import SeriesThread from "@/components/series-thread";
 import { series } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -58,26 +59,8 @@ export default function Insights() {
             </h2>
           </Reveal>
 
-          <Reveal
-            group
-            className="grid border-t border-l border-border sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {series.map((thread) => (
-              <div
-                key={thread.title}
-                className="tile tile-on-surface flex min-h-[200px] flex-col gap-4 border-r border-b border-border bg-bg p-8"
-              >
-                <span className="text-[11px] font-semibold tracking-[0.14em] text-muted">
-                  {thread.n}
-                </span>
-                <span className="text-[15px] font-bold tracking-[0.1em]">
-                  {thread.title}
-                </span>
-                <span className="text-[15px] leading-[1.6] text-muted">
-                  {thread.body}
-                </span>
-              </div>
-            ))}
+          <Reveal>
+            <SeriesThread threads={[...series]} />
           </Reveal>
         </div>
       </section>

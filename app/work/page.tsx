@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/reveal";
 import Explorer from "@/components/explorer";
+import BuildList from "@/components/build-list";
 import Marquee from "@/components/marquee";
 import NodeField from "@/components/node-field";
 import { brandTicker, personalBuilds, workAreas } from "@/lib/content";
@@ -66,7 +67,10 @@ export default function Work() {
             >
               SOMETIMES I BUILD THINGS
               <br />
-              JUST BECAUSE I WANT A BETTER WAY.
+              <span className="text-muted">
+                JUST BECAUSE I WANT A{" "}
+                <span className="text-accent">BETTER WAY.</span>
+              </span>
             </h2>
             <p className="max-w-[480px] text-[16px] leading-[1.7] text-muted">
               Personal apps and tools. Each one started as a small, annoying
@@ -75,38 +79,7 @@ export default function Work() {
           </Reveal>
 
           <Reveal>
-            <ol className="list-none border-t border-border p-0">
-              {personalBuilds.map((build, i) => (
-                <li key={build.name} className="row border-b border-border">
-                  <a
-                    href={build.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="grid grid-cols-[48px_1fr_auto] items-center gap-4 py-7 transition-[color,padding] duration-300 hover:pl-3 hover:text-accent sm:grid-cols-[72px_minmax(0,1.2fr)_minmax(0,1fr)_110px_auto] sm:gap-6"
-                  >
-                    <span className="text-[13px] font-semibold tracking-[0.1em] text-muted">
-                      {`0${i + 1}`}
-                    </span>
-                    <span className="text-[clamp(20px,2.2vw,28px)] font-bold tracking-[0.02em]">
-                      {build.name}
-                    </span>
-                    <span className="hidden text-[15px] text-muted sm:block">
-                      {build.desc}
-                    </span>
-                    <span className="hidden text-[11px] font-semibold tracking-[0.14em] text-muted sm:block">
-                      {build.kind}
-                    </span>
-                    <span className="inline-flex items-center gap-2.5 text-[12px] font-semibold tracking-[0.12em] whitespace-nowrap">
-                      <span className="hidden sm:inline">VIEW PROJECT</span>
-                      <span className="sm:hidden">VIEW</span>
-                      <span aria-hidden="true" className="arrow text-accent">
-                        →
-                      </span>
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ol>
+            <BuildList builds={personalBuilds} />
           </Reveal>
         </div>
       </section>

@@ -1,22 +1,43 @@
 import type { IconKey } from "@/components/icons";
+import type { BrandSlug } from "@/lib/brand-icons";
 
 export const profile = {
   name: "Abdullah",
   tagline: "The Systems Builder",
   role: "Managing Director",
   company: "Next Level Software",
-  companyUrl: "#",
+  companyUrl: "https://thenextlevelsoftware.com",
   years: "7+",
   apps: "50+",
 };
 
 export const socials = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/chandabdullah21/" },
-  { label: "Instagram", href: "https://www.instagram.com/chandabdullah21/" },
-  { label: "Facebook", href: "https://www.facebook.com/chandabdullah021" },
-  { label: "X", href: "https://x.com/chandabdullah21" },
-  { label: "Pinterest", href: "https://www.pinterest.com/chandabdullah21" },
-];
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/chandabdullah21/",
+    icon: "linkedin",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/chandabdullah21/",
+    icon: "instagram",
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/chandabdullah021",
+    icon: "facebook",
+  },
+  { label: "X", href: "https://x.com/chandabdullah21", icon: "x" },
+  {
+    label: "Pinterest",
+    href: "https://www.pinterest.com/chandabdullah21",
+    icon: "pinterest",
+  },
+] as const satisfies readonly {
+  label: string;
+  href: string;
+  icon: BrandSlug;
+}[];
 
 /** The LinkedIn profile doubles as the primary contact channel. */
 export const linkedin = socials[0].href;
@@ -33,35 +54,46 @@ export const navLinks = [
 export const processSteps = [
   {
     title: "UNDERSTAND",
+    icon: "understand",
     body: "What problem are we actually solving?",
     note: "The most expensive mistakes happen here, before anything is built. I spend longer on this step than people expect.",
   },
   {
     title: "BREAK DOWN",
+    icon: "breakdown",
     body: "Turn one complicated problem into smaller decisions.",
     note: "A problem that feels impossible is usually five problems that feel manageable.",
   },
   {
     title: "ORGANIZE",
+    icon: "organize",
     body: "Create clear flows, requirements and priorities.",
     note: "Scattered information becomes a sequence. What matters first, what can wait, what we are not doing.",
   },
   {
     title: "BUILD",
+    icon: "build",
     body: "Choose the simplest practical solution.",
     note: "The right amount of software is usually less than the first proposal. Simple things are easier to change later.",
   },
   {
     title: "TEST",
+    icon: "test",
     body: "Check real-world behavior, failures and edge cases.",
     note: "The happy path is one path. I look for the ones nobody drew on the whiteboard.",
   },
   {
     title: "IMPROVE",
+    icon: "improve",
     body: "Turn lessons into a better system.",
     note: "Every project leaves a residue of lessons. Writing them into the process is how the next one gets easier.",
   },
-];
+] as const satisfies readonly {
+  title: string;
+  icon: IconKey;
+  body: string;
+  note: string;
+}[];
 
 export const workAreas = [
   {
@@ -113,69 +145,61 @@ export const brandTicker = [
 export type Build = {
   name: string;
   desc: string;
-  kind: "ANDROID" | "WEB";
-  href: string;
+  /** Square store/site icon in /public/apps, or null to fall back to a glyph. */
+  icon: string | null;
+  play?: string;
+  web?: string;
 };
 
 export const personalBuilds: Build[] = [
   {
     name: "NEXTDO",
     desc: "Task & productivity system",
-    kind: "ANDROID",
-    href: "https://play.google.com/store/apps/details?id=com.nls.nextdo",
-  },
-  {
-    name: "NEXTSHARE",
-    desc: "Simple sharing utility",
-    kind: "ANDROID",
-    href: "https://play.google.com/store/apps/details?id=com.nls.nextshare",
-  },
-  {
-    name: "NEXTDAY",
-    desc: "Plan the day ahead",
-    kind: "ANDROID",
-    href: "https://play.google.com/store/apps/details?id=com.nls.nextday",
+    icon: "/apps/nextdo.webp",
+    play: "https://play.google.com/store/apps/details?id=com.nls.nextdo",
+    web: "https://nextdo-website.vercel.app/",
   },
   {
     name: "WEATHER LITE",
     desc: "Weather without the noise",
-    kind: "ANDROID",
-    href: "https://play.google.com/store/apps/details?id=com.nls.weatherapp",
+    icon: "/apps/weatherapp.webp",
+    play: "https://play.google.com/store/apps/details?id=com.nls.weatherapp",
+    web: "https://weatherliteapp.vercel.app/",
+  },
+  {
+    name: "NEXTSHARE",
+    desc: "Simple sharing utility",
+    icon: "/apps/nextshare.webp",
+    play: "https://play.google.com/store/apps/details?id=com.nls.nextshare",
+  },
+  {
+    name: "NEXTDAY",
+    desc: "Plan the day ahead",
+    icon: "/apps/nextday.webp",
+    play: "https://play.google.com/store/apps/details?id=com.nls.nextday",
   },
   {
     name: "MOMIN",
     desc: "Daily companion for prayer and reflection",
-    kind: "ANDROID",
-    href: "https://play.google.com/store/apps/details?id=com.nls.momin",
+    icon: "/apps/momin.webp",
+    play: "https://play.google.com/store/apps/details?id=com.nls.momin",
   },
   {
     name: "NEXTSPEND",
     desc: "Personal spending tracker",
-    kind: "WEB",
-    href: "https://nextspendapp.vercel.app/",
+    icon: "/apps/nextspend.png",
+    web: "https://nextspendapp.vercel.app/",
   },
   {
     name: "IMAGE CONVERTER",
     desc: "Convert images in the browser",
-    kind: "WEB",
-    href: "https://nls-image-convertor.vercel.app/",
-  },
-  {
-    name: "NEXTDO WEBSITE",
-    desc: "Product site for NextDo",
-    kind: "WEB",
-    href: "https://nextdo-website.vercel.app/",
-  },
-  {
-    name: "WEATHER LITE WEBSITE",
-    desc: "Product site for Weather Lite",
-    kind: "WEB",
-    href: "https://weatherliteapp.vercel.app/",
+    icon: null,
+    web: "https://nls-image-convertor.vercel.app/",
   },
 ];
 
-/** The four builds the home page teases; the full index lives on /work. */
-const FEATURED = ["NEXTDO", "NEXTSHARE", "NEXTSPEND", "WEATHER LITE"];
+/** The builds the home page teases; the full index lives on /work. */
+const FEATURED = ["NEXTDO", "WEATHER LITE", "NEXTSHARE", "NEXTSPEND"];
 
 export const featuredBuilds = FEATURED.map(
   (name) => personalBuilds.find((b) => b.name === name)!,
@@ -278,15 +302,15 @@ export const contactProblems = [
 ];
 
 export const careerStages = [
-  ["Developer", "Writing code, learning to structure it."],
+  ["Intern", "First exposure to real projects, real deadlines, real code."],
   [
-    "Multi-stack Engineer",
+    "Full Stack Developer",
     "Flutter, Ionic, React, Angular, Node — same problems, different syntax.",
   ],
   ["Product Thinking", "Asking what to build before asking how."],
-  ["Project Management", "Requirements, epics, coordination, delivery."],
-  ["QA / UX", "Edge cases, failures, and how people actually use it."],
-  ["Systems Thinking", "Turning repeated processes into structure."],
+  ["Project Manager", "Requirements, epics, coordination, delivery."],
+  ["QA / UX Concepts", "Edge cases, failures, and how people actually use it."],
+  ["System Thinking", "Turning repeated processes into structure."],
   ["Managing Director", "Leading a team that builds and improves products."],
 ].map(([title, body], i, all) => ({
   n: `0${i + 1}`,
@@ -296,18 +320,51 @@ export const careerStages = [
 }));
 
 export const tools = [
-  "Flutter",
-  "Ionic",
-  "React",
-  "Angular",
-  "Node.js",
-  "MongoDB / Mongoose",
-  "Python (basic)",
-  "ClickUp",
-  "Trello",
-  "AI-assisted development",
-  "Manual QA",
-  "SEO / content systems",
+  { label: "Flutter", icon: "flutter" },
+  { label: "Ionic", icon: "ionic" },
+  { label: "React", icon: "react" },
+  { label: "Angular", icon: "angular" },
+  { label: "Node.js", icon: "node" },
+  { label: "MongoDB / Mongoose", icon: "mongodb" },
+  { label: "Python (basic)", icon: "python" },
+  { label: "Xcode", icon: "xcode" },
+  { label: "Figma", icon: "figma" },
+  { label: "ClickUp", icon: "clickup" },
+  { label: "Trello", icon: "trello" },
+  { label: "Notion", icon: "notion" },
+  { label: "DigitalOcean", icon: "digitalocean" },
+  { label: "AWS", icon: "aws" },
+  { label: "LangChain", icon: "langchain" },
+  { label: "Claude", icon: "claude" },
+  { label: "ChatGPT", icon: "chatgpt" },
+  { label: "Grok", icon: "grok" },
+  { label: "Manual QA", icon: "qa" },
+  { label: "SEO / content systems", icon: "seo" },
+] as const satisfies readonly { label: string; icon: BrandSlug }[];
+
+/** The about-page story, broken into labelled beats rather than one block. */
+export const storyBlocks = [
+  {
+    label: "THE HABIT",
+    lead: true,
+    body: "When information is scattered, I want to organize it. When a workflow becomes repetitive, I think about a system. When someone is blocked on logic, I enjoy helping them break the problem down. When an existing tool doesn't solve a personal problem properly, I usually end up building something.",
+  },
+  {
+    label: "IT STARTED WITH CODE",
+    body: "As a developer I wanted clean structure. Then, as a multi-stack engineer working across Flutter, Ionic, React, Angular and Node.js, I saw how the same problems repeated across very different stacks. The problem was rarely the language.",
+  },
+  {
+    label: "THEN THE PRODUCT",
+    body: "Product thinking followed, because building the wrong thing well is still building the wrong thing. Project management followed that, because a clear plan is a system too.",
+  },
+  {
+    label: "THEN THE PEOPLE USING IT",
+    body: "Testing and UX taught me to look past the happy path and at how software actually behaves in a person's hands. AI, SEO and business operations came in the same way: something was messy, and there should have been a better way.",
+  },
+  {
+    label: "WHERE IT LANDS",
+    body: "Seven years and 50+ applications later, I work across engineering, product, delivery, QA, UX, AI and operations. Not as a list of skills, but as one habit applied to bigger and bigger problems: understand it, break it down, organize it, build the simplest system that works.",
+  },
 ];
 
 /**

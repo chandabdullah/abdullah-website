@@ -5,6 +5,8 @@ import Marquee from "@/components/marquee";
 import NodeField from "@/components/node-field";
 import CountUp from "@/components/count-up";
 import Explorer from "@/components/explorer";
+import BuildList from "@/components/build-list";
+import InsightRows from "@/components/insight-rows";
 import SystemVisual from "@/components/system-visual";
 import ProcessSteps from "@/components/process-steps";
 import Currently from "@/components/currently";
@@ -96,6 +98,10 @@ export default function Home() {
           </div>
 
           <figure className="relative m-0 w-full justify-self-end">
+            <div
+              aria-hidden="true"
+              className="photo-glow absolute -top-6 -right-6 -bottom-6 -left-6 blur-[2px]"
+            />
             <div
               aria-hidden="true"
               className="absolute -top-4 right-4 bottom-4 -left-4 border border-border"
@@ -260,7 +266,10 @@ export default function Home() {
             <h2 id="builds-h" className={H2}>
               SOMETIMES I BUILD THINGS
               <br />
-              JUST BECAUSE I WANT A BETTER WAY.
+              <span className="text-muted">
+                JUST BECAUSE I WANT A{" "}
+                <span className="text-accent">BETTER WAY.</span>
+              </span>
             </h2>
             <p className="max-w-[480px] text-[16px] leading-[1.7] text-muted">
               Personal apps and tools, built when an existing option
@@ -270,34 +279,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal>
-            <ol className="list-none border-t border-border p-0">
-              {featuredBuilds.map((build, i) => (
-                <li key={build.name} className="row border-b border-border">
-                  <a
-                    href={build.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="grid grid-cols-[48px_1fr_auto] items-center gap-4 py-7 transition-[color,padding] duration-300 hover:pl-3 hover:text-accent sm:grid-cols-[72px_minmax(0,1.2fr)_minmax(0,1fr)_auto] sm:gap-6"
-                  >
-                    <span className="text-[13px] font-semibold tracking-[0.1em] text-muted">
-                      {`0${i + 1}`}
-                    </span>
-                    <span className="text-[clamp(20px,2.2vw,28px)] font-bold tracking-[0.02em]">
-                      {build.name}
-                    </span>
-                    <span className="hidden text-[15px] text-muted sm:block">
-                      {build.desc}
-                    </span>
-                    <span className="inline-flex items-center gap-2.5 text-[12px] font-semibold tracking-[0.12em] whitespace-nowrap">
-                      VIEW{" "}
-                      <span aria-hidden="true" className="arrow text-accent">
-                        →
-                      </span>
-                    </span>
-                  </a>
-                </li>
-              ))}
-            </ol>
+            <BuildList builds={featuredBuilds} />
           </Reveal>
 
           <Link
@@ -333,36 +315,8 @@ export default function Home() {
             </Link>
           </Reveal>
 
-          <Reveal
-            group
-            className="grid border-t border-l border-border sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {insights.slice(0, 3).map((post) => (
-              <article
-                key={post.title}
-                className="tile row flex min-h-[300px] flex-col gap-5 border-r border-b border-border p-8"
-              >
-                <div className="flex justify-between text-[11px] font-semibold tracking-[0.16em]">
-                  <span className="text-accent">{post.category}</span>
-                  <span className="text-muted">{post.date}</span>
-                </div>
-                <h3 className="text-[22px] leading-[1.25] font-bold tracking-[-0.01em]">
-                  {post.title}
-                </h3>
-                <p className="flex-1 text-[15px] leading-[1.65] text-muted">
-                  {post.excerpt}
-                </p>
-                <Link
-                  href="/insights"
-                  className="inline-flex items-center gap-2.5 text-[12px] font-semibold tracking-[0.12em]"
-                >
-                  READ{" "}
-                  <span aria-hidden="true" className="arrow text-accent">
-                    →
-                  </span>
-                </Link>
-              </article>
-            ))}
+          <Reveal>
+            <InsightRows posts={insights.slice(0, 3)} />
           </Reveal>
         </div>
       </section>

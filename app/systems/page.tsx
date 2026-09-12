@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Reveal from "@/components/reveal";
 import SystemVisual from "@/components/system-visual";
 import Explorer from "@/components/explorer";
 import Marquee from "@/components/marquee";
+import SeriesThread from "@/components/series-thread";
 import NodeField from "@/components/node-field";
 import { brandTicker, processSteps, series } from "@/lib/content";
 
@@ -95,33 +95,8 @@ export default function Systems() {
             </h2>
           </Reveal>
 
-          <Reveal
-            group
-            className="grid border-t border-l border-border sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {series.map((thread) => (
-              <Link
-                key={thread.title}
-                href="/insights"
-                className="tile row flex min-h-[200px] flex-col gap-4 border-r border-b border-border p-8"
-              >
-                <span className="text-[11px] font-semibold tracking-[0.14em] text-muted">
-                  {thread.n}
-                </span>
-                <span className="text-[15px] font-bold tracking-[0.1em]">
-                  {thread.title}
-                </span>
-                <span className="flex-1 text-[15px] leading-[1.6] text-muted">
-                  {thread.body}
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="arrow text-[18px] text-accent"
-                >
-                  →
-                </span>
-              </Link>
-            ))}
+          <Reveal>
+            <SeriesThread threads={[...series]} />
           </Reveal>
         </div>
       </section>

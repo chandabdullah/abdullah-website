@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { navLinks } from "@/lib/content";
+import { linkedin, navLinks } from "@/lib/content";
 import Logo from "@/components/logo";
 import ThemeToggle from "@/components/theme-toggle";
 
@@ -50,15 +50,17 @@ export default function Nav() {
         <div className="flex items-center gap-4">
           <ThemeToggle className={ICON_BTN} />
 
-          <Link
-            href="/contact"
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden h-10 items-center gap-2.5 bg-accent px-5 text-[13px] font-semibold tracking-[0.04em] text-on-accent transition-[filter] hover:brightness-90 mid:inline-flex"
           >
             Let&apos;s Talk{" "}
             <span aria-hidden="true" className="arrow">
               →
             </span>
-          </Link>
+          </a>
 
           <button
             type="button"
@@ -109,13 +111,15 @@ export default function Nav() {
             </Link>
           );
         })}
-        <Link
-          href="/contact"
+        <a
+          href={linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={() => setMenuOpen(false)}
           className="mt-4 inline-flex h-12 items-center justify-between bg-accent px-5 text-[14px] font-semibold text-on-accent"
         >
           Let&apos;s Talk <span aria-hidden="true">→</span>
-        </Link>
+        </a>
       </nav>
     </header>
   );

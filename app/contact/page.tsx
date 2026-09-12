@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import Currently from "@/components/currently";
 import NodeField from "@/components/node-field";
-import { contactProblems, linkedin, socials } from "@/lib/content";
+import SocialLinks from "@/components/social-links";
+import { contactProblems, linkedin } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "Planning a product, unblocking a delayed project, adding AI without the hype, or turning a repetitive process into a system — I'm always interested in a good problem.",
 };
-
-/** The three networks worth surfacing on the contact card. */
-const CONTACT_SOCIALS = socials.filter((s) => s.href !== "#");
 
 export default function Contact() {
   return (
@@ -70,16 +68,12 @@ export default function Contact() {
               {contactProblems.map((problem, i) => (
                 <li
                   key={problem}
-                  className="group grid grid-cols-[40px_1fr] gap-3 border-t border-border py-3.5 text-[15px] leading-[1.5] transition-[padding] duration-300 hover:pl-2"
+                  className="group grid grid-cols-[40px_1fr] gap-3 border-t border-border py-3.5 text-[15px] leading-[1.5]"
                 >
-                  <span className="flex items-center gap-2 pt-[3px] text-[12px] font-bold tracking-[0.1em] text-accent">
+                  <span className="pt-[3px] text-[12px] font-bold tracking-[0.1em] text-accent">
                     {`0${i + 1}`}
-                    <span
-                      aria-hidden="true"
-                      className="h-px w-0 bg-accent transition-[width] duration-300 group-hover:w-3"
-                    />
                   </span>
-                  <span className="transition-colors group-hover:text-accent">
+                  <span className="underline-hover self-start transition-colors group-hover:text-accent">
                     {problem}
                   </span>
                 </li>
@@ -90,19 +84,7 @@ export default function Contact() {
               <span className="text-[12px] font-semibold tracking-[0.2em] text-muted">
                 ELSEWHERE
               </span>
-              <div className="flex flex-wrap gap-x-6 gap-y-2">
-                {CONTACT_SOCIALS.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ul-link text-[14px] font-semibold transition-colors hover:text-accent"
-                  >
-                    {social.label}
-                  </a>
-                ))}
-              </div>
+              <SocialLinks showLabels size={18} />
             </div>
           </div>
         </div>

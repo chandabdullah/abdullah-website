@@ -4,7 +4,14 @@ import Reveal from "@/components/reveal";
 import Currently from "@/components/currently";
 import Marquee from "@/components/marquee";
 import NodeField from "@/components/node-field";
-import { brandTicker, careerStages, profile, tools } from "@/lib/content";
+import BrandIcon from "@/components/brand-icon";
+import {
+  brandTicker,
+  careerStages,
+  profile,
+  storyBlocks,
+  tools,
+} from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -46,6 +53,10 @@ export default function About() {
           <figure className="relative m-0 w-full max-w-[420px] justify-self-end">
             <div
               aria-hidden="true"
+              className="photo-glow absolute -top-6 -right-6 -bottom-6 -left-6 blur-[2px]"
+            />
+            <div
+              aria-hidden="true"
               className="absolute top-4 -right-4 -bottom-4 left-4 border border-border"
             />
             <Image
@@ -77,37 +88,31 @@ export default function About() {
             THE PATTERN
           </h2>
 
-          <Reveal className="flex max-w-[720px] flex-col gap-7 text-[18px] leading-[1.7] text-muted">
-            <p className="text-[22px] leading-[1.5] font-medium text-ink">
-              When information is scattered, I want to organize it. When a
-              workflow becomes repetitive, I think about a system. When someone
-              is blocked on logic, I enjoy helping them break the problem down.
-              When an existing tool doesn&rsquo;t solve a personal problem
-              properly, I usually end up building something.
-            </p>
-            <p>
-              That pattern is the whole story. It started with code: as a
-              developer I wanted clean structure, then as a multi-stack engineer
-              working across Flutter, Ionic, React, Angular and Node.js I saw
-              how the same problems repeated across very different stacks. The
-              problem was rarely the language.
-            </p>
-            <p>
-              Product thinking followed, because building the wrong thing well
-              is still building the wrong thing. Project management followed
-              that, because a clear plan is a system too. Testing and UX taught
-              me to look past the happy path and at how software actually
-              behaves in a person&rsquo;s hands. AI, SEO and business operations
-              came in the same way: something was messy, and there should have
-              been a better way.
-            </p>
-            <p>
-              Seven years and {profile.apps} applications later, I work across
-              engineering, product, delivery, QA, UX, AI and operations. Not as
-              a list of skills, but as one habit applied to bigger and bigger
-              problems: understand it, break it down, organize it, build the
-              simplest system that works.
-            </p>
+          <Reveal group className="flex max-w-[760px] flex-col">
+            {storyBlocks.map((block, i) => (
+              <div
+                key={block.label}
+                className="group grid gap-3 border-t border-border py-8 first:border-t-0 first:pt-0 lg:grid-cols-[150px_1fr] lg:gap-8"
+              >
+                <div className="flex items-baseline gap-3">
+                  <span className="text-[11px] font-bold tracking-[0.14em] text-accent">
+                    {`0${i + 1}`}
+                  </span>
+                  <span className="text-[11px] font-semibold tracking-[0.16em] text-muted">
+                    {block.label}
+                  </span>
+                </div>
+                <p
+                  className={
+                    block.lead
+                      ? "text-[21px] leading-[1.5] font-medium text-ink"
+                      : "text-[17px] leading-[1.7] text-muted"
+                  }
+                >
+                  {block.body}
+                </p>
+              </div>
+            ))}
           </Reveal>
         </div>
       </section>
@@ -187,10 +192,11 @@ export default function About() {
           <Reveal group as="ul" className="flex list-none flex-wrap gap-2 p-0">
             {tools.map((tool) => (
               <li
-                key={tool}
-                className="lift border border-border bg-bg px-3.5 py-2 text-[13px] font-medium transition-colors hover:border-accent hover:text-accent"
+                key={tool.label}
+                className="brand-hover lift flex items-center gap-2.5 border border-border bg-bg px-3.5 py-2 text-[13px] font-medium transition-colors hover:border-accent"
               >
-                {tool}
+                <BrandIcon name={tool.icon} size={17} />
+                {tool.label}
               </li>
             ))}
           </Reveal>
