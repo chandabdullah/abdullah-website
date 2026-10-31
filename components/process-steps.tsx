@@ -65,10 +65,10 @@ export default function ProcessSteps() {
                   aria-hidden="true"
                   className={`relative grid h-11 w-11 place-items-center border-2 transition-all duration-400 ${
                     on
-                      ? "scale-110 border-accent bg-accent text-on-accent"
+                      ? "scale-110 border-primary bg-primary text-on-primary"
                       : done
-                        ? "border-accent bg-bg text-accent"
-                        : "border-border bg-bg text-muted group-hover:border-accent"
+                        ? "border-accent bg-panel text-accent"
+                        : "border-border bg-panel text-muted group-hover:border-accent"
                   }`}
                 >
                   <AreaIcon name={step.icon} size={22} />
@@ -97,7 +97,7 @@ export default function ProcessSteps() {
       </ol>
 
       {/* Detail ------------------------------------------------------- */}
-      <div className="grid items-start gap-8 border border-border bg-bg p-8 sm:p-10 lg:grid-cols-[auto_1fr] lg:gap-12">
+      <div className="grid items-start gap-8 border border-border bg-panel p-6 sm:p-10 lg:grid-cols-[auto_1fr] lg:gap-12">
         <AreaIcon name={current.icon} size={84} className="text-accent" />
 
         <div key={active} data-reveal-group="" className="is-in flex flex-col gap-4">

@@ -3,26 +3,34 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  --bg: #f8fafc;
-  --surface: #ffffff;
-  --ink: #0b1220;
-  --muted: #64748b;
-  --border: #e2e8f0;
-  --accent: #c2410c;
-  --on-accent: #ffffff;
-  --grid: rgba(11, 18, 32, 0.06);
+  /* Brand fill — the same teal on both themes. */
+  --primary: #0b7366;
+  --primary-hover: #075a50;
+  --on-primary: #ffffff;
+
+  --bg: #f5f7f6;
+  /* Alternate section band. */
+  --surface: #e9eeec;
+  /* Cards and panels. */
+  --panel: #ffffff;
+  --ink: #0b1517;
+  --muted: #4a585c;
+  --border: rgba(10, 30, 30, 0.12);
+  /* Accent text and marks; lighter on dark for contrast. */
+  --accent: #0b7366;
+  --grid: rgba(10, 30, 30, 0.06);
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --bg: #0b1220;
-  --surface: #182233;
-  --ink: #ffffff;
-  --muted: #cbd5e1;
-  --border: #334155;
-  --accent: #ff6b35;
-  --on-accent: #0b1220;
-  --grid: rgba(255, 255, 255, 0.06);
+  --bg: #0a0f17;
+  --surface: #121a26;
+  --panel: #0e1520;
+  --ink: #f1f4f4;
+  --muted: #a0aab3;
+  --border: rgba(255, 255, 255, 0.09);
+  --accent: #3db8a6;
+  --grid: rgba(255, 255, 255, 0.05);
   color-scheme: dark;
 }
 
@@ -34,11 +42,14 @@
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
+  --color-panel: var(--panel);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-accent: var(--accent);
-  --color-on-accent: var(--on-accent);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--on-primary);
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -68,8 +79,8 @@
   }
 
   ::selection {
-    background: var(--accent);
-    color: var(--on-accent);
+    background: var(--primary);
+    color: var(--on-primary);
   }
 
   :focus-visible {

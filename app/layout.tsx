@@ -3,26 +3,38 @@ import { Manrope } from "next/font/google";
 import Nav from "@/components/nav";
 import ScrollProgress from "@/components/scroll-progress";
 import Footer from "@/components/footer";
+import { profile } from "@/data/portfolio";
 import "./globals.css";
 
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
+  // Variable font: covers the 300–800 range the design uses.
+  weight: "variable",
 });
 
+const title = `${profile.name} — ${profile.title}`;
+const description = `${profile.name}, ${profile.title}. ${profile.years} years building software and ${profile.apps} mobile applications, from intern to leading product delivery.`;
+
 export const metadata: Metadata = {
+  metadataBase: new URL(profile.siteUrl),
   title: {
-    default: "Abdullah — The Systems Builder",
-    template: "%s — Abdullah",
+    default: title,
+    template: `%s — ${profile.name}`,
   },
-  description:
-    "Abdullah, Managing Director at Next Level Software. 7+ years and 50+ mobile applications spent turning messy problems into simple systems.",
+  description,
   openGraph: {
-    title: "Abdullah — The Systems Builder",
-    description:
-      "I turn messy problems into simple systems. Software, product, systems and AI.",
+    title,
+    description,
+    url: "/",
+    siteName: profile.name,
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
   },
 };
 

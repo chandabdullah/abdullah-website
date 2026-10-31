@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { linkedin, navLinks } from "@/lib/content";
+import { navLinks } from "@/data/portfolio";
 import Logo from "@/components/logo";
 import ThemeToggle from "@/components/theme-toggle";
 
@@ -23,7 +23,7 @@ export default function Nav() {
       <div className="mx-auto flex h-[72px] max-w-[1280px] items-center justify-between gap-6 px-6">
         <Logo size={34} className="transition-opacity hover:opacity-80" />
 
-        <nav aria-label="Primary" className="hidden gap-8 mid:flex">
+        <nav aria-label="Primary" className="hidden gap-8 whitespace-nowrap mid:flex">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -50,17 +50,15 @@ export default function Nav() {
         <div className="flex items-center gap-4">
           <ThemeToggle className={ICON_BTN} />
 
-          <a
-            href={linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden h-10 items-center gap-2.5 bg-accent px-5 text-[13px] font-semibold tracking-[0.04em] text-on-accent transition-[filter] hover:brightness-90 mid:inline-flex"
+          <Link
+            href="/contact"
+            className="hidden h-10 items-center gap-2.5 bg-primary px-5 text-[13px] font-semibold tracking-[0.04em] whitespace-nowrap text-on-primary transition-colors hover:bg-primary-hover mid:inline-flex"
           >
             Let&apos;s Talk{" "}
             <span aria-hidden="true" className="arrow">
               →
             </span>
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -111,15 +109,13 @@ export default function Nav() {
             </Link>
           );
         })}
-        <a
-          href={linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/contact"
           onClick={() => setMenuOpen(false)}
-          className="mt-4 inline-flex h-12 items-center justify-between bg-accent px-5 text-[14px] font-semibold text-on-accent"
+          className="mt-4 inline-flex h-12 items-center justify-between bg-primary px-5 text-[14px] font-semibold whitespace-nowrap text-on-primary transition-colors hover:bg-primary-hover"
         >
           Let&apos;s Talk <span aria-hidden="true">→</span>
-        </a>
+        </Link>
       </nav>
     </header>
   );

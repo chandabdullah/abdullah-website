@@ -28,7 +28,7 @@ export default function SystemVisual({
         onMouseLeave={() => setOrganized(false)}
         onFocus={() => setOrganized(true)}
         onBlur={() => setOrganized(false)}
-        className="grid cursor-crosshair grid-cols-2 border border-border bg-surface sm:grid-cols-3 lg:grid-cols-5"
+        className="grid cursor-crosshair grid-cols-2 border border-border bg-panel sm:grid-cols-3 lg:grid-cols-5"
       >
         {stages.map((stage, si) => (
           <div

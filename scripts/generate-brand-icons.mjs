@@ -37,13 +37,16 @@ const fromSet = (set, name, meta) => {
 };
 
 const ICONS = {
-  // Social
+  // Social — hover colours are the hand-picked brand values from the brief.
   linkedin: fromSet(ri, "linkedin-fill", { title: "LinkedIn", hex: "#0A66C2" }),
-  instagram: fromSimple("instagram"),
-  facebook: fromSimple("facebook"),
-  x: fromSimple("x", { dark: "#FFFFFF" }),
-  pinterest: fromSimple("pinterest"),
-
+  github: fromSimple("github", { hex: "#8957E5" }),
+  stackoverflow: fromSimple("stackoverflow", { hex: "#F48024" }),
+  dart: fromSimple("dart", { title: "pub.dev", hex: "#13B9FD" }),
+  upwork: fromSimple("upwork", { hex: "#14A800" }),
+  fiverr: fromSimple("fiverr", { hex: "#1DBF73" }),
+  x: fromSimple("x", { hex: "#1D9BF0" }),
+  instagram: fromSimple("instagram", { hex: "#E4405F" }),
+  facebook: fromSimple("facebook", { hex: "#1877F2" }),
   // Tools
   flutter: fromSimple("flutter"),
   ionic: fromSimple("ionic"),

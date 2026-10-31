@@ -10,14 +10,8 @@ import InsightRows from "@/components/insight-rows";
 import SystemVisual from "@/components/system-visual";
 import ProcessSteps from "@/components/process-steps";
 import Currently from "@/components/currently";
-import {
-  brandTicker,
-  featuredBuilds,
-  insights,
-  linkedin,
-  profile,
-  workAreas,
-} from "@/lib/content";
+import { brandTicker, insights, workAreas } from "@/lib/content";
+import { apps, linkedin, profile, stats } from "@/data/portfolio";
 
 const SHELL = "mx-auto max-w-[1280px] px-6";
 const EYEBROW = "text-[12px] font-semibold tracking-[0.2em] text-accent";
@@ -49,7 +43,7 @@ export default function Home() {
 
             <div className="flex max-w-[560px] flex-col gap-4 text-[17px] leading-relaxed text-muted">
               <p className="font-medium text-ink">
-                I&rsquo;m {profile.name}, {profile.role} at {profile.company}.
+                I&rsquo;m {profile.name}, {profile.title}.
               </p>
               <p>
                 After {profile.years} years and {profile.apps} mobile
@@ -65,7 +59,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/work"
-                className="inline-flex h-13 items-center gap-3 bg-accent px-7 text-[14px] font-semibold tracking-[0.04em] text-on-accent transition-[filter] hover:brightness-90"
+                className="inline-flex h-13 items-center gap-3 bg-primary px-7 text-[14px] font-semibold tracking-[0.04em] whitespace-nowrap text-on-primary transition-colors hover:bg-primary-hover"
               >
                 Explore My Work{" "}
                 <span aria-hidden="true" className="arrow">
@@ -74,7 +68,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/insights"
-                className="inline-flex h-13 items-center gap-3 border border-ink px-7 text-[14px] font-semibold tracking-[0.04em] transition-colors hover:border-accent hover:text-accent"
+                className="inline-flex h-13 items-center gap-3 border border-ink px-7 text-[14px] font-semibold tracking-[0.04em] whitespace-nowrap transition-colors hover:border-accent hover:text-accent"
               >
                 Read My Thinking{" "}
                 <span aria-hidden="true" className="arrow">
@@ -108,7 +102,7 @@ export default function Home() {
             />
             <Image
               src="/abdullah.webp"
-              alt={`${profile.name}, ${profile.role} at ${profile.company}`}
+              alt={`${profile.name}, ${profile.title}`}
               width={1229}
               height={1280}
               priority
@@ -120,7 +114,7 @@ export default function Home() {
               className="absolute -top-4 -left-4 h-10 w-10 border-t-2 border-l-2 border-accent"
             />
             <figcaption className="absolute right-0 -bottom-7 text-[11px] font-semibold tracking-[0.18em] text-muted">
-              {profile.name.toUpperCase()} / MD, {profile.company.toUpperCase()}
+              {profile.name.toUpperCase()} / PM &amp; MD, {profile.company.toUpperCase()}
             </figcaption>
           </figure>
         </div>
@@ -161,14 +155,13 @@ export default function Home() {
               the problem down.
             </p>
             <p>
-              Seven years in software moved me from writing code to shaping
-              products, coordinating delivery, testing edge cases and,
-              eventually, running a team. The pattern never changed. Only the
-              size of the problem did.
+              I started as an intern in 2020, then moved through Ionic, Flutter
+              and full-stack work into leading a team and managing delivery.
+              The pattern never changed. Only the size of the problem did.
             </p>
             <Link
               href="/about"
-              className="ul-link self-start text-[14px] font-semibold tracking-[0.04em] text-ink"
+              className="ul-link self-start text-[14px] font-semibold tracking-[0.04em] whitespace-nowrap text-ink"
             >
               Read the full story{" "}
               <span aria-hidden="true" className="arrow text-accent">
@@ -179,59 +172,39 @@ export default function Home() {
         </div>
 
         <div className="border-t border-border">
-          <Reveal
-            className={`${SHELL} grid sm:grid-cols-2 lg:grid-cols-3`}
-          >
-            <div className="border-border py-12 pr-8 sm:border-r">
-              <p className="text-[clamp(56px,6vw,88px)] font-extrabold leading-none tracking-[-0.03em]">
-                <CountUp to={7} pad className="text-accent" />+
-              </p>
-              <p className="mt-4 text-[12px] font-semibold tracking-[0.16em] text-muted">
-                YEARS BUILDING SOFTWARE
-              </p>
-            </div>
-            <div className="border-border py-12 sm:pl-8 lg:border-r lg:px-8">
-              <p className="text-[clamp(56px,6vw,88px)] font-extrabold leading-none tracking-[-0.03em]">
-                <CountUp to={50} className="text-accent" />+
-              </p>
-              <p className="mt-4 text-[12px] font-semibold tracking-[0.16em] text-muted">
-                MOBILE APPLICATIONS
-              </p>
-            </div>
-            <div className="py-12 lg:pl-8">
-              <p className="pt-[clamp(0px,1.4vw,24px)] text-[clamp(40px,4vw,56px)] font-extrabold leading-none tracking-[-0.02em]">
-                MULTIPLE
-              </p>
-              <p className="mt-4 text-[12px] font-semibold tracking-[0.16em] text-muted">
-                PRODUCT / BUSINESS SYSTEMS
-              </p>
-            </div>
+          <Reveal className={`${SHELL} grid sm:grid-cols-3`}>
+            {stats.map((stat, i) => (
+              <div
+                key={stat.label}
+                className={`border-border py-10 sm:py-12 ${
+                  i > 0 ? "border-t sm:border-t-0 sm:pl-8" : ""
+                } ${i < stats.length - 1 ? "sm:border-r sm:pr-8" : ""}`}
+              >
+                <p className="text-[clamp(56px,6vw,88px)] font-extrabold leading-none tracking-[-0.03em]">
+                  <CountUp to={stat.value} pad={stat.pad} className="text-accent" />
+                  +
+                </p>
+                <p className="mt-4 text-[12px] font-semibold tracking-[0.16em] text-muted uppercase">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </Reveal>
         </div>
       </section>
 
       {/* HOW I THINK ------------------------------------------------------ */}
       <section
+        id="approach"
         aria-labelledby="process-h"
         className="border-b border-border bg-surface"
       >
         <div className={`${SHELL} py-[clamp(56px,9vw,128px)]`}>
-          <Reveal className="mb-16 flex flex-wrap items-end justify-between gap-6">
-            <div className="flex flex-col gap-4">
-              <p className={EYEBROW}>HOW I THINK</p>
-              <h2 id="process-h" className={H2}>
-                HOW I APPROACH A PROBLEM
-              </h2>
-            </div>
-            <Link
-              href="/systems"
-              className="ul-link text-[14px] font-semibold tracking-[0.04em]"
-            >
-              Explore my systems{" "}
-              <span aria-hidden="true" className="arrow text-accent">
-                →
-              </span>
-            </Link>
+          <Reveal className="mb-16 flex flex-col gap-4">
+            <p className={EYEBROW}>HOW I THINK</p>
+            <h2 id="process-h" className={H2}>
+              HOW I APPROACH A PROBLEM
+            </h2>
           </Reveal>
 
           <Reveal>
@@ -272,21 +245,20 @@ export default function Home() {
               </span>
             </h2>
             <p className="max-w-[480px] text-[16px] leading-[1.7] text-muted">
-              Personal apps and tools, built when an existing option
-              didn&rsquo;t quite solve the problem. A few of them are below; the
-              full index is on the Work page.
+              Personal apps, built when an existing option didn&rsquo;t quite
+              solve the problem. Each one is live on Google Play.
             </p>
           </Reveal>
 
           <Reveal>
-            <BuildList builds={featuredBuilds} />
+            <BuildList builds={apps} />
           </Reveal>
 
           <Link
             href="/work"
-            className="ul-link mt-10 text-[14px] font-semibold tracking-[0.04em]"
+            className="ul-link mt-10 text-[14px] font-semibold tracking-[0.04em] whitespace-nowrap"
           >
-            All personal builds{" "}
+            All my work{" "}
             <span aria-hidden="true" className="arrow text-accent">
               →
             </span>
@@ -306,7 +278,7 @@ export default function Home() {
             </div>
             <Link
               href="/insights"
-              className="ul-link text-[14px] font-semibold tracking-[0.04em]"
+              className="ul-link text-[14px] font-semibold tracking-[0.04em] whitespace-nowrap"
             >
               All writing{" "}
               <span aria-hidden="true" className="arrow text-accent">
@@ -347,7 +319,7 @@ export default function Home() {
           <div className="flex flex-wrap gap-4">
             <Link
               href="/contact"
-              className="inline-flex h-14 items-center gap-3 bg-accent px-8 text-[14px] font-bold tracking-[0.08em] text-on-accent transition-[filter] hover:brightness-90"
+              className="inline-flex h-14 items-center gap-3 bg-primary px-8 text-[14px] font-bold tracking-[0.08em] whitespace-nowrap text-on-primary transition-colors hover:bg-primary-hover"
             >
               LET&apos;S TALK{" "}
               <span aria-hidden="true" className="arrow">
@@ -358,7 +330,7 @@ export default function Home() {
               href={linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-14 items-center gap-3 border border-ink px-8 text-[14px] font-semibold tracking-[0.08em] transition-colors hover:border-accent hover:text-accent"
+              className="inline-flex h-14 items-center gap-3 border border-ink px-8 text-[14px] font-semibold tracking-[0.08em] whitespace-nowrap transition-colors hover:border-accent hover:text-accent"
             >
               CONNECT ON LINKEDIN
             </a>

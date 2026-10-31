@@ -77,7 +77,7 @@ export default function Explorer({ items, kicker }: ExplorerProps) {
         })}
       </ol>
 
-      <div className="relative flex min-h-[340px] flex-col gap-6 border border-border bg-bg p-10">
+      <div className="relative flex min-h-[340px] flex-col gap-6 border border-border bg-panel p-6 sm:p-10">
         {/* Re-keying the body replays the entrance animation on each change. */}
         <div
           key={active}

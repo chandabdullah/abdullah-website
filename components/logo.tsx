@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { profile } from "@/lib/content";
+import { profile } from "@/data/portfolio";
 
 type LogoProps = {
   variant?: "horizontal" | "vertical" | "icon";

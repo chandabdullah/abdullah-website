@@ -5,18 +5,14 @@ import Currently from "@/components/currently";
 import Marquee from "@/components/marquee";
 import NodeField from "@/components/node-field";
 import BrandIcon from "@/components/brand-icon";
-import {
-  brandTicker,
-  careerStages,
-  profile,
-  storyBlocks,
-  tools,
-} from "@/lib/content";
+import Timeline from "@/components/timeline";
+import { brandTicker, storyBlocks, tools } from "@/lib/content";
+import { profile } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Seven years and 50+ applications across engineering, product, delivery, QA, UX, AI and operations — one habit applied to bigger and bigger problems.",
+    "From intern in 2020 to PM & Managing Director at Next Level Software: Ionic, Flutter, full-stack backends, team lead and product delivery.",
 };
 
 const SHELL = "mx-auto max-w-[1280px] px-6";
@@ -61,7 +57,7 @@ export default function About() {
             />
             <Image
               src="/abdullah.webp"
-              alt={`${profile.name}, ${profile.role} at ${profile.company}`}
+              alt={`${profile.name}, ${profile.title}`}
               width={1229}
               height={1280}
               priority
@@ -119,62 +115,29 @@ export default function About() {
 
       <Marquee items={brandTicker} slow />
 
-      {/* EVOLUTION -------------------------------------------------------- */}
+      {/* TIMELINE -------------------------------------------------------- */}
       <section aria-labelledby="tl-h" className="border-b border-border">
         <div className={`${SHELL} py-[clamp(56px,9vw,128px)]`}>
           <Reveal className="mb-16 grid items-end gap-8 lg:grid-cols-2 lg:gap-16">
             <div className="flex flex-col gap-4">
               <p className="text-[12px] font-semibold tracking-[0.2em] text-accent">
-                EVOLUTION
+                CAREER · 2020 → 2026
               </p>
               <h2
                 id="tl-h"
                 className="text-[clamp(30px,3.6vw,52px)] font-bold leading-[1.05]"
               >
-                FROM &ldquo;HOW DO I BUILD THIS?&rdquo;
+                FROM INTERN TO MANAGING DIRECTOR.
               </h2>
             </div>
             <p className="max-w-[520px] text-[16px] leading-[1.7] text-muted">
-              To &ldquo;What should we build, why, how should it work, and how
-              do we deliver it properly?&rdquo; Each step added a perspective.
-              None of them replaced engineering.
+              Each year added a perspective: hybrid apps, Flutter, backends,
+              leading a team, then running delivery. None of them replaced
+              engineering.
             </p>
           </Reveal>
 
-          <Reveal
-            group
-            as="ol"
-            className="grid list-none border-t-2 border-border p-0 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7"
-          >
-            {careerStages.map((stage) => (
-                <li
-                  key={stage.title}
-                  className="group relative flex flex-col gap-3 pt-6 pr-6 pb-8"
-                >
-                  <span
-                    aria-hidden="true"
-                    className={`absolute -top-0.5 left-0 h-0.5 w-6 transition-[width] duration-500 group-hover:w-full ${
-                      stage.current ? "bg-accent" : "bg-ink"
-                    }`}
-                  />
-                  {stage.current && (
-                    <span
-                      aria-hidden="true"
-                      className="pulse-ring absolute -top-1.5 left-0 h-3 w-3 bg-accent"
-                    />
-                  )}
-                  <span className="text-[12px] font-semibold tracking-[0.12em] text-muted">
-                    {stage.n}
-                  </span>
-                  <span className="text-[16px] leading-tight font-bold tracking-[0.03em]">
-                    {stage.title}
-                  </span>
-                  <span className="text-[14px] leading-[1.55] text-muted">
-                    {stage.body}
-                  </span>
-                </li>
-              ))}
-          </Reveal>
+          <Timeline />
         </div>
       </section>
 
@@ -193,7 +156,7 @@ export default function About() {
             {tools.map((tool) => (
               <li
                 key={tool.label}
-                className="brand-hover lift flex items-center gap-2.5 border border-border bg-bg px-3.5 py-2 text-[13px] font-medium transition-colors hover:border-accent"
+                className="brand-hover lift flex items-center gap-2.5 border border-border bg-panel px-3.5 py-2 text-[13px] font-medium transition-colors hover:border-accent"
               >
                 <BrandIcon name={tool.icon} size={17} />
                 {tool.label}

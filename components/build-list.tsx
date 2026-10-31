@@ -1,13 +1,62 @@
 import Image from "next/image";
-import AreaIcon from "@/components/icons";
 import BrandIcon from "@/components/brand-icon";
-import type { Build } from "@/lib/content";
+import { playUrl, type App } from "@/data/portfolio";
+
+const PLATFORM =
+  "brand-hover inline-flex items-center gap-2 border border-border px-3 py-2 text-[11px] font-semibold tracking-[0.12em] whitespace-nowrap transition-colors hover:border-accent";
+
+/** Android + website buttons for an app, shared by the list and the cards. */
+export function AppLinks({ app }: { app: App }) {
+  return (
+    <span className="flex flex-wrap items-center gap-2">
+      <a
+        href={playUrl(app.package)}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${app.name} on Google Play`}
+        className={PLATFORM}
+      >
+        <BrandIcon name="googleplay" size={15} />
+        ANDROID
+      </a>
+      {app.site && (
+        <a
+          href={app.site}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${app.name} website`}
+          className={PLATFORM}
+        >
+          <BrandIcon name="web" size={15} />
+          WEBSITE
+        </a>
+      )}
+    </span>
+  );
+}
+
+export function AppIcon({ app, size = 48 }: { app: App; size?: number }) {
+  return (
+    <span
+      className="grid shrink-0 place-items-center overflow-hidden border border-border bg-panel"
+      style={{ width: size, height: size }}
+    >
+      <Image
+        src={app.icon}
+        alt=""
+        width={96}
+        height={96}
+        className="h-full w-full object-cover"
+      />
+    </span>
+  );
+}
 
 /**
- * Personal builds as rows. An app and its product site are one entry with two
+ * Personal apps as rows. An app and its product site are one entry with two
  * destinations, so the row itself is not a link — each platform is.
  */
-export default function BuildList({ builds }: { builds: Build[] }) {
+export default function BuildList({ builds }: { builds: App[] }) {
   return (
     <ol className="list-none border-t border-border p-0">
       {builds.map((build, i) => (
@@ -19,50 +68,17 @@ export default function BuildList({ builds }: { builds: Build[] }) {
             {`0${i + 1}`}
           </span>
 
-          <span className="grid h-12 w-12 place-items-center overflow-hidden border border-border bg-bg">
-            {build.icon ? (
-              <Image
-                src={build.icon}
-                alt=""
-                width={96}
-                height={96}
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <AreaIcon name="convert" size={26} className="text-accent" />
-            )}
-          </span>
+          <AppIcon app={build} />
 
           <span className="flex flex-col gap-1">
-            <span className="text-[clamp(18px,2.2vw,26px)] font-bold tracking-[0.02em] transition-colors group-hover:text-accent">
+            <span className="text-[clamp(18px,2.2vw,26px)] font-bold tracking-[0.02em] uppercase transition-colors group-hover:text-accent">
               {build.name}
             </span>
-            <span className="text-[14px] text-muted">{build.desc}</span>
+            <span className="text-[14px] text-muted">{build.tagline}</span>
           </span>
 
-          <span className="col-span-2 flex flex-wrap items-center gap-2 sm:col-span-1">
-            {build.play && (
-              <a
-                href={build.play}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="brand-hover inline-flex items-center gap-2 border border-border px-3 py-2 text-[11px] font-semibold tracking-[0.12em] transition-colors hover:border-accent"
-              >
-                <BrandIcon name="googleplay" size={15} />
-                ANDROID
-              </a>
-            )}
-            {build.web && (
-              <a
-                href={build.web}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="brand-hover inline-flex items-center gap-2 border border-border px-3 py-2 text-[11px] font-semibold tracking-[0.12em] transition-colors hover:border-accent"
-              >
-                <BrandIcon name="web" size={15} />
-                WEBSITE
-              </a>
-            )}
+          <span className="col-span-2 sm:col-span-1">
+            <AppLinks app={build} />
           </span>
         </li>
       ))}

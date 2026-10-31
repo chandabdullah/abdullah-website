@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Currently from "@/components/currently";
 import NodeField from "@/components/node-field";
 import SocialLinks from "@/components/social-links";
-import { contactProblems, linkedin } from "@/lib/content";
+import { contactProblems } from "@/lib/content";
+import { linkedin, profile } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -38,12 +39,10 @@ export default function Contact() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href={linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-14 items-center gap-3 bg-accent px-8 text-[14px] font-bold tracking-[0.08em] text-on-accent transition-[filter] hover:brightness-90"
+                href={`mailto:${profile.email}`}
+                className="inline-flex h-14 items-center gap-3 bg-primary px-8 text-[14px] font-bold tracking-[0.08em] whitespace-nowrap text-on-primary transition-colors hover:bg-primary-hover"
               >
-                LET&apos;S TALK{" "}
+                EMAIL ME{" "}
                 <span aria-hidden="true" className="arrow">
                   →
                 </span>
@@ -52,14 +51,20 @@ export default function Contact() {
                 href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-14 items-center gap-3 border border-ink px-8 text-[14px] font-semibold tracking-[0.08em] transition-colors hover:border-accent hover:text-accent"
+                className="inline-flex h-14 items-center gap-3 border border-ink px-8 text-[14px] font-semibold tracking-[0.08em] whitespace-nowrap transition-colors hover:border-accent hover:text-accent"
               >
                 CONNECT ON LINKEDIN
               </a>
             </div>
+            <a
+              href={`mailto:${profile.email}`}
+              className="ul-link self-start text-[clamp(16px,2vw,20px)] font-semibold break-all"
+            >
+              {profile.email}
+            </a>
           </div>
 
-          <div className="flex w-full max-w-[480px] flex-col gap-8 border border-border bg-surface p-10 lg:justify-self-end">
+          <div className="flex w-full max-w-[480px] flex-col gap-8 border border-border bg-panel p-6 sm:p-10 lg:justify-self-end">
             <p className="text-[12px] font-semibold tracking-[0.2em] text-muted">
               GOOD PROBLEMS TO BRING
             </p>

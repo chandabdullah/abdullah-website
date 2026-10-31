@@ -1,55 +1,11 @@
 import type { IconKey } from "@/components/icons";
 import type { BrandSlug } from "@/lib/brand-icons";
 
-export const profile = {
-  name: "Abdullah",
-  tagline: "The Systems Builder",
-  role: "Managing Director",
-  company: "Next Level Software",
-  companyUrl: "https://thenextlevelsoftware.com",
-  years: "7+",
-  apps: "50+",
-};
-
-export const socials = [
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/chandabdullah21/",
-    icon: "linkedin",
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/chandabdullah21/",
-    icon: "instagram",
-  },
-  {
-    label: "Facebook",
-    href: "https://www.facebook.com/chandabdullah021",
-    icon: "facebook",
-  },
-  { label: "X", href: "https://x.com/chandabdullah21", icon: "x" },
-  {
-    label: "Pinterest",
-    href: "https://www.pinterest.com/chandabdullah21",
-    icon: "pinterest",
-  },
-] as const satisfies readonly {
-  label: string;
-  href: string;
-  icon: BrandSlug;
-}[];
-
-/** The LinkedIn profile doubles as the primary contact channel. */
-export const linkedin = socials[0].href;
-
-export const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Work", href: "/work" },
-  { label: "Systems", href: "/systems" },
-  { label: "Insights", href: "/insights" },
-  { label: "Contact", href: "/contact" },
-];
+/*
+ * Site copy that isn't portfolio data: the approach, scope areas, insights
+ * and the about-page story. Projects, apps, socials and the timeline live in
+ * data/portfolio.ts.
+ */
 
 export const processSteps = [
   {
@@ -141,69 +97,6 @@ export const brandTicker = [
   "CLARITY",
   "SYSTEM",
 ];
-
-export type Build = {
-  name: string;
-  desc: string;
-  /** Square store/site icon in /public/apps, or null to fall back to a glyph. */
-  icon: string | null;
-  play?: string;
-  web?: string;
-};
-
-export const personalBuilds: Build[] = [
-  {
-    name: "NEXTDO",
-    desc: "Task & productivity system",
-    icon: "/apps/nextdo.webp",
-    play: "https://play.google.com/store/apps/details?id=com.nls.nextdo",
-    web: "https://nextdo-website.vercel.app/",
-  },
-  {
-    name: "WEATHER LITE",
-    desc: "Weather without the noise",
-    icon: "/apps/weatherapp.webp",
-    play: "https://play.google.com/store/apps/details?id=com.nls.weatherapp",
-    web: "https://weatherliteapp.vercel.app/",
-  },
-  {
-    name: "NEXTSHARE",
-    desc: "Simple sharing utility",
-    icon: "/apps/nextshare.webp",
-    play: "https://play.google.com/store/apps/details?id=com.nls.nextshare",
-  },
-  {
-    name: "NEXTDAY",
-    desc: "Plan the day ahead",
-    icon: "/apps/nextday.webp",
-    play: "https://play.google.com/store/apps/details?id=com.nls.nextday",
-  },
-  {
-    name: "MOMIN",
-    desc: "Daily companion for prayer and reflection",
-    icon: "/apps/momin.webp",
-    play: "https://play.google.com/store/apps/details?id=com.nls.momin",
-  },
-  {
-    name: "NEXTSPEND",
-    desc: "Personal spending tracker",
-    icon: "/apps/nextspend.png",
-    web: "https://nextspendapp.vercel.app/",
-  },
-  {
-    name: "IMAGE CONVERTER",
-    desc: "Convert images in the browser",
-    icon: null,
-    web: "https://nls-image-convertor.vercel.app/",
-  },
-];
-
-/** The builds the home page teases; the full index lives on /work. */
-const FEATURED = ["NEXTDO", "WEATHER LITE", "NEXTSHARE", "NEXTSPEND"];
-
-export const featuredBuilds = FEATURED.map(
-  (name) => personalBuilds.find((b) => b.name === name)!,
-);
 
 export type Post = {
   category: string;
@@ -300,24 +193,6 @@ export const contactProblems = [
   "Understanding estimates, requirements or developer decisions.",
   "A repetitive internal process that should be a system.",
 ];
-
-export const careerStages = [
-  ["Intern", "First exposure to real projects, real deadlines, real code."],
-  [
-    "Full Stack Developer",
-    "Flutter, Ionic, React, Angular, Node — same problems, different syntax.",
-  ],
-  ["Product Thinking", "Asking what to build before asking how."],
-  ["Project Manager", "Requirements, epics, coordination, delivery."],
-  ["QA / UX Concepts", "Edge cases, failures, and how people actually use it."],
-  ["System Thinking", "Turning repeated processes into structure."],
-  ["Managing Director", "Leading a team that builds and improves products."],
-].map(([title, body], i, all) => ({
-  n: `0${i + 1}`,
-  title,
-  body,
-  current: i === all.length - 1,
-}));
 
 export const tools = [
   { label: "Flutter", icon: "flutter" },

@@ -1,6 +1,6 @@
 import Logo from "@/components/logo";
 import SocialLinks from "@/components/social-links";
-import { profile } from "@/lib/content";
+import { profile } from "@/data/portfolio";
 
 export default function Footer() {
   return (
@@ -13,9 +13,16 @@ export default function Footer() {
             <SocialLinks showLabels size={18} className="gap-x-6" />
           </nav>
 
-          <div className="flex flex-col gap-1 text-[13px]">
+          <div className="flex flex-col items-start gap-1 text-[13px] whitespace-nowrap">
             <span className="font-semibold">{profile.role}</span>
-            <span className="text-muted">{profile.company}</span>
+            <a
+              href={profile.companyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ul-link text-muted transition-colors hover:text-accent"
+            >
+              {profile.company} <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
 

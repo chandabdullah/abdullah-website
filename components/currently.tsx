@@ -1,5 +1,5 @@
 import Reveal from "@/components/reveal";
-import { profile } from "@/lib/content";
+import { currently, profile } from "@/data/portfolio";
 
 type CurrentlyProps = {
   className?: string;
@@ -20,21 +20,24 @@ export default function Currently({ className = "", note }: CurrentlyProps) {
             CURRENTLY
           </p>
           <h2 id="nls-h" className="text-[26px] leading-tight font-bold">
-            {profile.role}
-            <br />
-            <span className="font-medium text-muted">{profile.company}</span>
+            {currently.heading}{" "}
+            <span className="font-medium text-muted">
+              — {currently.company}
+            </span>
           </h2>
         </div>
         <div className="flex max-w-[560px] flex-col gap-6">
           <p className="text-[16px] leading-[1.7] text-muted">
-            I work with a team building and improving software products for
-            startups and businesses.{note ? ` ${note}` : ""}
+            {currently.body}
+            {note ? ` ${note}` : ""}
           </p>
           <a
             href={profile.companyUrl}
-            className="ul-link self-start text-[14px] font-semibold tracking-[0.04em]"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ul-link self-start text-[14px] font-semibold tracking-[0.04em] whitespace-nowrap"
           >
-            Visit Next Level Software{" "}
+            {currently.linkLabel}{" "}
             <span aria-hidden="true" className="arrow text-accent">
               →
             </span>
